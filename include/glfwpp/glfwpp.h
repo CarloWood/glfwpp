@@ -53,12 +53,12 @@ namespace glfw
 
         [[gnu::always_inline]] inline void monitorCallback(GLFWmonitor* monitor_, int eventType_)
         {
-            monitorEvent::call(Monitor{monitor_}, MonitorEventType{eventType_});
+            monitorEvent(Monitor{monitor_}, MonitorEventType{eventType_});
         }
 
         [[gnu::always_inline]] inline void joystickCallback(int jid_, int eventType_)
         {
-            joystickEvent::call(Joystick{static_cast<decltype(Joystick::Joystick1)>(jid_)}, static_cast<JoystickEvent>(eventType_));
+            joystickEvent(Joystick{static_cast<decltype(Joystick::Joystick1)>(jid_)}, static_cast<JoystickEvent>(eventType_));
         }
     }  // namespace impl
 
@@ -102,7 +102,7 @@ namespace glfw
         }
     };
 
-    [[nodiscard]] GlfwLibrary init();
+    [[nodiscard]] inline GlfwLibrary init();
 
     [[nodiscard, gnu::always_inline]] inline Version getVersion()
     {
